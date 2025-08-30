@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blend | Liquid Glass UI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Liquid background shapes -->
+    <div class="liquid-animation">
+        <div class="liquid-shape shape-1"></div>
+        <div class="liquid-shape shape-2"></div>
+        <div class="liquid-shape shape-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Search bar -->
+        <div class="search-container">
+            <div class="search-bar glass-effect">
+                <i class="fas fa-search"></i>
+                <input type="text" id="mainSearch" placeholder="Search for products, brands, specs..." autocomplete="off">
+                <div id="mainSuggestList" class="suggest-list"></div>
+            </div>
+        </div>
+
+        <header class="glass-effect">
+            <div class="logo">Blend</div>
+            <div class="tagline">Liquid Glass UI • 3D-style Modal • 300 Devices • Pure HTML/JS</div>
+            <div class="theme-toggle">
+                <div class="toggle-btn active" id="clearModeBtn"><i class="fas fa-glass-whiskey"></i> Clear</div>
+                <div class="toggle-btn" id="sunModeBtn"><i class="fas fa-sun"></i> Light</div>
+                <div class="toggle-btn" id="moonModeBtn"><i class="fas fa-moon"></i> Dark</div>
+            </div>
+        </header>
+
+        <!-- Home tiles -->
+        <div class="content">
+            <div class="app-card glass-effect" data-category="laptops">
+                <div class="app-icon"><i class="fas fa-laptop"></i></div>
+                <div class="app-name">Laptops</div>
+                <div class="app-desc">100 models • Budget / Gaming / Office / Workstation</div>
+            </div>
+            <div class="app-card glass-effect" data-category="desktops">
+                <div class="app-icon"><i class="fas fa-desktop"></i></div>
+                <div class="app-name">Desktops</div>
+                <div class="app-desc">100 high-performance builds</div>
+            </div>
+            <div class="app-card glass-effect" data-category="components">
+                <div class="app-icon"><i class="fas fa-microchip"></i></div>
+                <div class="app-name">Components</div>
+                <div class="app-desc">100 parts • GPUs • CPUs • RAM • SSD • PSUs</div>
+            </div>
+        </div>
+
+        <!-- Widgets -->
+        <div class="widgets">
+            <div class="widget glass-effect">
+                <div class="widget-header"><div class="widget-title">Top Devices</div></div>
+                <div class="widget-content">
+                    <div id="topList" class="device-list"></div>
+                </div>
+            </div>
+
+            <div class="widget glass-effect">
+                <div class="widget-header"><div class="widget-title">Performance Stats</div></div>
+                <div class="widget-content">
+                    <div class="stats">
+                        <div class="stat"><div class="stat-value" id="statTotal">300</div><div class="stat-label">Total</div></div>
+                        <div class="stat"><div class="stat-value" id="statLap">100</div><div class="stat-label">Laptops</div></div>
+                        <div class="stat"><div class="stat-value" id="statDesk">100</div><div class="stat-label">Desktops</div></div>
+                        <div class="stat"><div class="stat-value" id="statComp">100</div><div class="stat-label">Components</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls + product area (hidden until user picks category) -->
+        <div id="controlsWrap" class="glass-effect" style="display:none;padding:12px">
+            <div class="controls">
+                <div class="suggest-box" style="position:relative;width:260px">
+                    <input id="searchInput" class="control input" placeholder="Search name, brand, spec…" autocomplete="off"/>
+                    <div id="suggestList" class="suggest-list"></div>
+                </div>
+
+                <div id="sectorSeg" class="segment" style="display:none">
+                    <button data-sector="All" class="active">All</button>
+                    <button data-sector="Budget">Budget</button>
+                    <button data-sector="Gaming">Gaming</button>
+                    <button data-sector="Office">Office</button>
+                    <button data-sector="Workstation">Workstation</button>
+                </div>
+
+                <select id="sortSel" class="control">
+                    <option value="relevance">Sort: Relevance</option>
+                    <option value="priceAsc">Price ↑</option>
+                    <option value="priceDesc">Price ↓</option>
+                    <option value="nameAsc">Name A-Z</option>
+                </select>
+
+                <select id="perPageSel" class="control">
+                    <option value="8">8 / page</option>
+                    <option value="12" selected>12 / page</option>
+                    <option value="20">20 / page</option>
+                </select>
+
+                <div style="flex:1"></div>
+                <div id="resultsLabel" style="opacity:.85"></div>
+            </div>
+
+            <div id="productGrid" class="product-grid"></div>
+            <div id="pagination" class="pagination"></div>
+
+            <div id="backHome" style="margin-top:12px;cursor:pointer;opacity:.9;color:var(--text)">← Back to Home</div>
+        </div>
+
+        <footer class="glass-effect" style="margin-top:18px;padding:14px;text-align:center">
+            <div>Blend Liquid Glass UI • Pure HTML/CSS/JS</div>
+            <div style="opacity:.8;font-size:.92rem">Standalone prototype — images are placeholders (picsum)</div>
+        </footer>
+    </div>
+
+    <!-- Modal -->
+    <div id="productModal" class="modal" aria-hidden="true">
+        <div class="modal-content glass-effect">
+            <div class="close-modal" id="closeModal"><i class="fas fa-times"></i></div>
+            <div id="modalBody"></div>
+            <audio id="uiTone" preload="auto">
+                <source src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Computer_Windows_98_Startup_Sound.ogg" type="audio/ogg"/>
+            </audio>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
